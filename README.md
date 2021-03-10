@@ -2,6 +2,7 @@
 
 ## Administrator account
 username: admin@1000.red
+
 password: Aa123456789
 
 ## Development tools & frameworks
