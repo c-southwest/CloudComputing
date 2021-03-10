@@ -1,0 +1,75 @@
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">CloudComputing</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> 首页
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="topup">
+                <span class="oi oi-star" aria-hidden="true"></span> 充值
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="createserver">
+                <span class="oi oi-random" aria-hidden="true"></span>  开通服务器
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="myserver">
+                <span class="oi oi-cloud" aria-hidden="true"></span> 我的服务器
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="transaction">
+                <span class="oi oi-document" aria-hidden="true"></span> 交易记录
+            </NavLink>
+        </li>
+        <AuthorizeView Roles="Administrators">
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="servermanagement">
+                    <span class="oi oi-hard-drive" aria-hidden="true"></span> 服务器管理
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="usermanagement">
+                    <span class="oi oi-person" aria-hidden="true"></span> 用户管理
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="templatemanagement">
+                    <span class="oi oi-spreadsheet" aria-hidden="true"></span> 模板管理
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="switchmanagement">
+                    <span class="oi oi-fork" aria-hidden="true"></span> 交换机管理
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="alltransaction">
+                    <span class="oi oi-document" aria-hidden="true"></span> 全局交易记录
+                </NavLink>
+            </li>
+        </AuthorizeView>
+
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

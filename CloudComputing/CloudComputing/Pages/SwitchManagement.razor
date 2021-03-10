@@ -1,0 +1,103 @@
+﻿@page "/switchmanagement"
+@inject CloudComputing.Data.ApplicationDbContext db
+@attribute [Authorize]
+@using CloudComputing.Model
+
+<h3>SwitchManagement</h3>
+<AuthorizeView Roles="Administrators">
+    <div class="form-inline">
+        <div class="form-group">
+            <label>网络名称：</label>
+            <input type="text" class="form-control" @bind-value="_switch.name" />
+        </div>
+        <div class="ml-3 form-inline">
+            <label>虚拟交换机：</label>
+            <input type="text" class="form-control" @bind-value="_switch.virtualswitch" />
+        </div>
+        <button class="btn btn-primary" @onclick="Add">添加</button>
+        @if (update)
+        {
+            <button class="btn btn-success" @onclick="Update">更新</button>
+            <button class="btn btn-danger" @onclick="Cancel">取消</button>
+
+        }
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>网络名称</th>
+            <th>虚拟交换机</th>
+            <th>操作</th>
+        </tr>
+        @foreach (var s in switches)
+        {
+            <tr>
+                <td>@s.name</td>
+                <td>@s.virtualswitch</td>
+                <td>
+                    <button class="btn btn-info btn-sm" @onclick="()=>Edit(s)">编辑</button>
+                    <button class="btn btn-dark btn-sm" @onclick="()=>Delete(s)">删除</button>
+                </td>
+            </tr>
+        }
+    </table>
+</AuthorizeView>
+
+@code {
+    //是否显示更新相关按钮
+    private bool update = false;
+    //页面交换机信息模型
+    private Switch _switch = new Switch() { name = "", virtualswitch = "" };
+    //交换机列表
+    private List<Switch> switches;
+
+    //初始化
+    protected override async Task OnInitializedAsync()
+    {
+        switches = db.switches.ToList();
+    }
+
+    //添加新交换机模板
+    private void Add()
+    {
+        db.switches.Add(new Switch()
+        {
+            name = _switch.name,
+            virtualswitch = _switch.virtualswitch
+        });
+        db.SaveChanges();
+        switches = db.switches.ToList();
+        Cancel();
+    }
+
+    //编辑交换机模板
+    private void Edit(Switch s)
+    {
+        _switch = s;
+        update = true;
+    }
+
+    //删除交换机模板
+    private void Delete(Switch s)
+    {
+        db.switches.Remove(s);
+        db.SaveChanges();
+        switches = db.switches.ToList();
+    }
+
+    //更新交换机模板
+    private void Update()
+    {
+        db.switches.Update(_switch);
+        db.SaveChanges();
+        switches = db.switches.ToList();
+        Cancel();
+    }
+
+    //取消更新操作
+    private void Cancel()
+    {
+        _switch = new Switch() { name = "", virtualswitch = ""};
+        update = false;
+    }
+}

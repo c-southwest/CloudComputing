@@ -1,0 +1,108 @@
+﻿@page "/templatemanagement"
+@inject CloudComputing.Data.ApplicationDbContext db
+@attribute [Authorize]
+@using CloudComputing.Model
+
+<h3>Template Management</h3>
+<AuthorizeView Roles="Administrators">
+    <div class="form-inline">
+        <div class="form-group">
+            <label>系统名称：</label>
+            <input type="text" class="form-control" @bind-value="ost.name" />
+        </div>
+        <div class="ml-3 form-inline">
+            <label>镜像地址：</label>
+            <input type="text" class="form-control" @bind-value="ost.path" />
+        </div>
+        <div class="ml-3 form-inline">
+            <label>默认密码：</label>
+            <input type="text" class="form-control" @bind-value="ost.password" />
+        </div>
+        <button class="btn btn-primary" @onclick="Add">添加</button>
+        @if (update)
+        {
+            <button class="btn btn-success" @onclick="Update">更新</button>
+            <button class="btn btn-danger" @onclick="Cancel">取消</button>
+        }
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>系统名称</th>
+            <th>镜像地址</th>
+            <th>默认密码</th>
+            <th>操作</th>
+        </tr>
+        @foreach (var template in templates)
+        {
+            <tr>
+                <td>@template.name</td>
+                <td>@template.path</td>
+                <td>@template.password</td>
+                <td>
+                    <button class="btn btn-info btn-sm" @onclick="()=>Edit(template)">编辑</button>
+                    <button class="btn btn-dark btn-sm" @onclick="()=>Delete(template)">删除</button>
+                </td>
+            </tr>
+        }
+    </table>
+</AuthorizeView>
+@code {
+    //是否显示更新相关按钮
+    private bool update = false;
+    //页面系统镜像模板信息模型
+    private Template ost = new Template() { name = "", path = "" };
+    //系统镜像模板列表
+    private List<Template> templates;
+
+    //初始化
+    protected override async Task OnInitializedAsync()
+    {
+        templates = db.templates.ToList();
+    }
+
+    //添加新系统镜像模板
+    private void Add()
+    {
+        db.templates.Add(new Template()
+        {
+            name = ost.name,
+            path = ost.path,
+            password=ost.password
+        });
+        db.SaveChanges();
+        templates = db.templates.ToList();
+        Cancel();
+    }
+
+    //编辑系统镜像模板
+    private void Edit(Template t)
+    {
+        ost = t;
+        update = true;
+    }
+
+    //删除系统镜像模板
+    private void Delete(Template t)
+    {
+        db.templates.Remove(t);
+        db.SaveChanges();
+        templates = db.templates.ToList();
+    }
+
+    //更新系统镜像模板
+    private void Update()
+    {
+        db.templates.Update(ost);
+        db.SaveChanges();
+        templates = db.templates.ToList();
+        Cancel();
+    }
+
+    //取消更新系统镜像模板
+    private void Cancel()
+    {
+        ost = new Template() { name = "", path = "", password = "" };
+        update = false;
+    }
+}

@@ -1,0 +1,84 @@
+﻿@page "/topup"
+@inject CloudComputing.Data.ApplicationDbContext db
+@using Model
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<AuthorizeView>
+    <Authorized>
+        <h2>您的余额为：@amount 元</h2>
+        <label>
+            充值金额：
+            <input class="form-control" type="text" @bind-value="_balance" placeholder="请输入金额" />
+        </label>
+        <br />
+        <button class="btn btn-primary" @onclick="()=>AddBalance(context.User.Identity.Name)">充值</button>
+        <p class="text-danger">@danger</p>
+        <p class="text-success">@success</p>
+    </Authorized>
+    <NotAuthorized>
+        <h2>请先登录</h2>
+    </NotAuthorized>
+</AuthorizeView>
+
+
+@code {
+    //警告信息
+    private string danger = "";
+    //成功充值信息
+    private string success = "";
+    //充值金额
+    private int _balance { get; set; }
+    //用户当前余额
+    private double amount = 0;
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    //充值余额
+    private void AddBalance(string username)
+    {
+        if (db.balances.Find(username) == null)
+        {
+            db.balances.Add(new Balance() { username = username, amount = 0 });
+        }
+        if (_balance <= 0)
+        {
+            danger = "充值金额不合法，请修改后再试！";
+            success = "";
+            return;
+        }
+        db.balances.Find(username).amount += _balance;
+        db.SaveChanges();
+        amount = db.balances.Find(username).amount;
+        db.transactions.Add(new Model.Transaction()
+        {
+            username = username,
+            type = "充值",
+            amount = _balance,
+            time = DateTime.Now,
+            note = ""
+        });
+        db.SaveChanges();
+        success = $"成功充值{_balance}元";
+        _balance = 0;
+        danger = "";
+    }
+
+    //初始化
+    protected override async Task OnInitializedAsync()
+    {
+        var CurrentUser = (await authenticationStateTask).User;
+        //如果当前没有登录用户，不作处理
+        if (CurrentUser.Identity.Name == null)
+        {
+            return;
+        }
+        //如果当前用户没有记录，则添加
+        if (db.balances.Find(CurrentUser.Identity.Name) == null)
+        {
+            db.balances.Add(new Balance() { username = CurrentUser.Identity.Name, amount = 0 });
+            db.SaveChanges();
+        }
+        //读取用户余额
+        amount = db.balances.Find(CurrentUser.Identity.Name).amount;
+    }
+}

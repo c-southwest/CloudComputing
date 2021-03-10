@@ -1,0 +1,352 @@
+﻿@page "/usermanagement"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> _userManager
+@inject RoleManager<IdentityRole> _roleManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<h3>Administration</h3>
+
+<AuthorizeView Roles="Administrators">
+    <Authorized>
+        @if (context.User.IsInRole(ADMINISTRATION_ROLE))
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>用户名</th>
+                        <th>邮箱</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in ColUsers)
+                    {
+                        <tr>
+                            <td>@user.Id.Substring(0, 5) ...</td>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td>
+                                <!-- 编辑用户 -->
+                                <button class="btn btn-primary"
+                                        @onclick="(() => EditUser(user))">
+                                    编辑
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>You're not signed in as a user in @ADMINISTRATION_ROLE.</p>
+        }
+        @if (ShowPopup)
+        {
+            <!-- 弹窗创建用户或编辑用户 -->
+            <div class="modal" tabindex="-1" style="display:block" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">用户信息</h3>
+                            <!-- 关闭弹窗按钮 -->
+                            <button type="button" class="close"
+                                    @onclick="ClosePopup">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            @if (objUser.Id != "")
+                            {
+                                <p>@objUser.Id</p>
+                            }
+                            @if (objUser.Id != "")
+                            {
+                                <p>@objUser.UserName</p>
+                            }
+                            else
+                            {
+                                <input class="form-control" type="text"
+                                       placeholder="UserName"
+                                       @bind="objUser.UserName" />
+                            }
+                            <input class="form-control" type="text"
+                                   placeholder="Email"
+                                   @bind="objUser.Email" />
+                            <input class="form-control" type="password"
+                                   placeholder="Password"
+                                   @bind="objUser.PasswordHash" />
+                            <select class="form-control"
+                                    @bind="@CurrentUserRole">
+                                @foreach (var option in Options)
+                                {
+                                    <option value="@option">
+                                        @option
+                                    </option>
+                                }
+                            </select>
+                            <br /><br />
+                            <!-- 保存用户按钮 -->
+                            <button class="btn btn-primary"
+                                    @onclick="SaveUser">
+                                保存
+                            </button>
+                            @if (objUser.Id != "")
+                            {
+                                <!-- 删除用户按钮 -->
+                                <button class="btn btn-danger"
+                                        @onclick="DeleteUser">
+                                    删除
+                                </button>
+                            }
+                            <br />
+                            <span style="color:red">@strError</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <button class="btn btn-info" @onclick="AddNewUser">添加新用户</button>
+    </Authorized>
+    <NotAuthorized>
+        <p>请先登录.</p>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+    string ADMINISTRATION_ROLE = "Administrators";
+    System.Security.Claims.ClaimsPrincipal CurrentUser;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // 确保是否有 ADMINISTRATION_ROLE 角色
+        var RoleResult = await _roleManager.FindByNameAsync(ADMINISTRATION_ROLE);
+        if (RoleResult == null)
+        {
+            // 创建 ADMINISTRATION_ROLE 角色
+            await _roleManager.CreateAsync(new IdentityRole(ADMINISTRATION_ROLE));
+        }
+        // 确保用户admin@1000.red是管理员
+        var user = await _userManager.FindByNameAsync("admin@1000.red");
+        if (user != null)
+        {
+            // 角色admin@1000.red是否属于管理员?
+            var UserResult = await _userManager.IsInRoleAsync(user, ADMINISTRATION_ROLE);
+            if (!UserResult)
+            {
+                // 将用户添加到管理员角色
+                await _userManager.AddToRoleAsync(user, ADMINISTRATION_ROLE);
+            }
+        }
+        // 获取当前登录的用户
+        CurrentUser = (await authenticationStateTask).User;
+        GetUsers();
+    }
+
+    // 用户模型
+    IdentityUser objUser = new IdentityUser();
+    // 选中用户的角色
+    string CurrentUserRole { get; set; } = "Users";
+    // 用户集合
+    List<IdentityUser> ColUsers = new List<IdentityUser>();
+    // 可选角色
+    List<string> Options = new List<string>() { "Users", "Administrators" };
+    // 错误信息
+    string strError = "";
+    // 是否显示弹窗
+    bool ShowPopup = false;
+
+    void AddNewUser()
+    {
+        // Make new user
+        objUser = new IdentityUser();
+        objUser.PasswordHash = "*****";
+        // 将id设置为空，表示其为新记录
+        objUser.Id = "";
+        // 打开弹窗
+        ShowPopup = true;
+    }
+    async Task SaveUser()
+    {
+        try
+        {
+            if (objUser.Id != "")
+            {
+                // 获取用户
+                var user = await _userManager.FindByIdAsync(objUser.Id);
+                // 更新邮箱
+                user.Email = objUser.Email;
+                // 更新用户
+                await _userManager.UpdateAsync(user);
+                // 只有当密码不是默认密码时才进行更新
+                if (objUser.PasswordHash != "*****")
+                {
+                    var resetToken =
+                        await _userManager.GeneratePasswordResetTokenAsync(user);
+                    var passworduser =
+                        await _userManager.ResetPasswordAsync(
+                            user,
+                            resetToken,
+                            objUser.PasswordHash);
+                    if (!passworduser.Succeeded)
+                    {
+                        if (passworduser.Errors.FirstOrDefault() != null)
+                        {
+                            strError =
+                                passworduser
+                                .Errors
+                                .FirstOrDefault()
+                                .Description;
+                        }
+                        else
+                        {
+                            strError = "Pasword error";
+                        }
+                        // 保持弹窗打开
+                        return;
+                    }
+                }
+                // 用户是否为管理员角色
+                var UserResult =
+                    await _userManager
+                    .IsInRoleAsync(user, ADMINISTRATION_ROLE);
+                // 选择了管理员但是用户不是管理员
+                if (
+                    (CurrentUserRole == ADMINISTRATION_ROLE)
+                    &
+                    (!UserResult))
+                {
+                    // 将用户添加到管理员角色
+                    await _userManager
+                        .AddToRoleAsync(user, ADMINISTRATION_ROLE);
+                }
+                else
+                {
+                    // 没有选择管理员但用户是管理员
+                    if ((CurrentUserRole != ADMINISTRATION_ROLE)
+                        &
+                        (UserResult))
+                    {
+                        // 将用户移除管理员角色
+                        await _userManager
+                            .RemoveFromRoleAsync(user, ADMINISTRATION_ROLE);
+                    }
+                }
+            }
+            else
+            {
+                // 添加新用户
+                var NewUser =
+                    new IdentityUser
+                    {
+                        UserName = objUser.UserName,
+                        Email = objUser.Email
+                    };
+                var CreateResult =
+                    await _userManager
+                    .CreateAsync(NewUser, objUser.PasswordHash);
+                if (!CreateResult.Succeeded)
+                {
+                    if (CreateResult
+                        .Errors
+                        .FirstOrDefault() != null)
+                    {
+                        strError =
+                            CreateResult
+                            .Errors
+                            .FirstOrDefault()
+                            .Description;
+                    }
+                    else
+                    {
+                        strError = "Create error";
+                    }
+                    // 保持弹窗打开
+                    return;
+                }
+                else
+                {
+                    if (CurrentUserRole == ADMINISTRATION_ROLE)
+                    {
+                        // 将用户添加到管理员角色
+                        await _userManager
+                            .AddToRoleAsync(NewUser, ADMINISTRATION_ROLE);
+                    }
+                }
+            }
+            // 关闭弹窗
+            ShowPopup = false;
+            // 刷新用户列表
+            GetUsers();
+        }
+        catch (Exception ex)
+        {
+            strError = ex.GetBaseException().Message;
+        }
+    }
+    async Task EditUser(IdentityUser _IdentityUser)
+    {
+        // 选择用户
+        objUser = _IdentityUser;
+        // 获取用户
+        var user = await _userManager.FindByIdAsync(objUser.Id);
+        if (user != null)
+        {
+            // 用户是否属于管理员角色
+            var UserResult =
+                await _userManager
+                .IsInRoleAsync(user, ADMINISTRATION_ROLE);
+            if (UserResult)
+            {
+                CurrentUserRole = ADMINISTRATION_ROLE;
+            }
+            else
+            {
+                CurrentUserRole = "Users";
+            }
+        }
+        // 打开弹窗
+        ShowPopup = true;
+    }
+    async Task DeleteUser()
+    {
+        // 关闭弹窗
+        ShowPopup = false;
+        // 获取用户
+        var user = await _userManager.FindByIdAsync(objUser.Id);
+        if (user != null)
+        {
+            // 删除用户
+            await _userManager.DeleteAsync(user);
+        }
+        // 刷新用户列表
+        GetUsers();
+    }
+    void ClosePopup()
+    {
+        // 关闭弹窗
+        ShowPopup = false;
+    }
+    public void GetUsers()
+    {
+        // 清除错误信息
+        strError = "";
+        // 保存用户的集合
+        ColUsers = new List<IdentityUser>();
+        // 从 _UserManager 获取用户
+        var user = _userManager.Users.Select(x => new IdentityUser
+        {
+            Id = x.Id,
+            UserName = x.UserName,
+            Email = x.Email,
+            PasswordHash = "*****"
+        });
+        foreach (var item in user)
+        {
+            ColUsers.Add(item);
+        }
+    }
+}

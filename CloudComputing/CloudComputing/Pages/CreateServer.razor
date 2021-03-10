@@ -1,0 +1,259 @@
+﻿@page "/createserver"
+@inject NavigationManager nav
+@using System.Management.Automation
+@using System.Management.Automation.Runspaces
+@using System.Collections.ObjectModel
+@using Model
+@inject CloudComputing.Data.ApplicationDbContext db
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize]
+<h3>CreateServer</h3>
+
+<EditForm Model="@serverinfo" OnValidSubmit="create">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <div class="row"><label class="text-danger">@error</label></div>
+        <label>
+            服务器名称：<input class="form-control" type="text" @bind-value="serverinfo.servername" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            操作系统：<select class="custom-select" @bind="serverinfo.os">
+                @foreach (var template in templates)
+                {
+                    <option value="@template.name">@template.name</option>
+                }
+            </select>
+        </label><h5 class="text-primary">默认密码：@password</h5>
+    </div>
+    <div class="form-group">
+        <label>
+            内存大小（MB）：<input class="form-control" type="text" @bind-value="serverinfo.memory" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            CPU核心数：<input class="form-control" type="text" @bind-value="serverinfo.cpu" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            硬盘大小（GB）：<input class="form-control" type="number" @bind-value="serverinfo.disk" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            带宽（MB）：<input class="form-control" type="number" @bind-value="serverinfo.bandwidth" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            交换机：<select class="custom-select" @bind="serverinfo.switchname">
+                @foreach (var s in switches)
+                {
+                    <option value="@s.virtualswitch">@s.name</option>
+                }
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            购买时长（月）：<input class="form-control" type="number" @bind-value="months" />
+        </label>
+    </div>
+    <button class="btn btn-primary" disabled="@isDisabled" @onclick="BeforeCreate" type="submit">Create</button>
+</EditForm>
+<h3 class="text-success">所需花费：@cost 元</h3>
+<lable class="text-danger">@message</lable>
+
+@code {
+    //通过lamda表达式计算配置所需花费
+    private double cost => (serverinfo.memory / 1024 * 20    //内存 1G/20元
+            + serverinfo.cpu * 20                  //CPU  1核/20元
+            + serverinfo.disk * 1                   //硬盘  1G/1元
+            + serverinfo.bandwidth * 20)             //带宽 1MB/20元
+            * months;                               //配置价格*月数
+
+    //系统镜像模板列表
+    private List<Template> templates;
+    //交换机配置列表
+    private List<Switch> switches;
+    //通过lamda表达式获取对应系统镜像的默认密码
+    private string password => db.templates.Where(t => t.name == serverinfo.os).First().password;
+    //创建按钮是否被禁用
+    private bool isDisabled = false;
+    //提示信息
+    private string message = "";
+    //默认开通月数为1
+    private int months = 1;
+    //报错信息
+    private string error;
+
+    //创建服务器所需的信息集合
+    private CreateServerModel serverinfo = new CreateServerModel()
+    {
+        cpu = 1,
+        disk = 40,
+        memory = 1024,
+        os = "",
+        bandwidth = 1,
+        switchname = ""
+    };
+
+    //初始化
+    protected override async Task OnInitializedAsync()
+    {
+        templates = db.templates.ToList();
+        switches = db.switches.ToList();
+        if (templates.Count > 0)
+        {
+            serverinfo.os = templates.First().name;
+        }
+        if (switches.Count > 0)
+        {
+            serverinfo.switchname = switches.First().virtualswitch;
+        }
+
+    }
+
+    //创建服务器之前更新界面UI
+    private void BeforeCreate()
+    {
+        isDisabled = true;
+        message = "正在开通服务器，请等待...";
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+    //系统镜像模板文件所在路径
+    string scrVHDpath;
+    //新建虚拟机的目标路径
+    string desVHDpath;
+    //保存新建虚拟机的根目录
+    string path = @"C:\Users\dada\Desktop\Hyper-v\VM";
+
+    //创建服务器
+    async Task create()
+    {
+        scrVHDpath = db.templates.Where(t => t.name == serverinfo.os).First().path;
+        desVHDpath = path + @"\" + serverinfo.servername + @"\" + serverinfo.servername + ".vhdx";
+
+        var s = db.servers.Where(s => s.servername == serverinfo.servername);
+        //能查找到意味着已经存在
+        if (s.Count() != 0)
+        {
+            error = "已经存在该服务器名称，请修改后重试";
+            message = "";
+            isDisabled = false;
+            return;
+        }
+        error = "";
+
+        var CurrentUser = (await authenticationStateTask).User;
+        var b = db.balances.Find(CurrentUser.Identity.Name);
+        if (b.amount < cost) //余额不够
+        {
+            message = "您的余额不足，请先充值";
+            isDisabled = false;
+            return;
+        }
+        b.amount -= cost;
+        db.SaveChanges();
+        PowerShell ps1 = PowerShell.Create();
+        //根据服务器名称创建对应目录
+        ps1.AddScript(@$"New-Item -Type Directory '{path + @"\" + serverinfo.servername}'");
+        ps1.AddScript(@$"Copy-Item -Path '{scrVHDpath}' -Destination '{desVHDpath}'");
+        ps1.Invoke();
+        //创建虚拟机并且对其进行设置
+        PowerShell ps2 = PowerShell.Create();
+        ps2.AddCommand("New-VM")
+        .AddParameter("Name", serverinfo.servername)
+        .AddParameter("VHDPath", desVHDpath)
+        .AddParameter("Path", path + @"\" + serverinfo.servername)
+        .AddParameter("SwitchName", serverinfo.switchname);
+        ps2.AddScript($"Set-VMMemory '{serverinfo.servername}' -DynamicMemoryEnabled $true -MaximumBytes {serverinfo.memory}GB");
+        ps2.AddScript($"Resize-VHD -Path {desVHDpath} -SizeBytes {serverinfo.disk}GB");
+        ps2.AddScript($"Set-VMProcessor '{serverinfo.servername}' -Count {serverinfo.cpu}");
+        ps2.AddScript($"Set-VMNetworkAdapter -VMName '{serverinfo.servername}' -MaximumBandwidth {serverinfo.bandwidth}MB");
+        ps2.AddScript($"start-vm '{serverinfo.servername}'");
+        ps2.Invoke();
+
+        string result_ip = "获取中...";
+
+        //创建服务器后，添加记录到数据库
+        db.servers.Add(new Server()
+        {
+            cpu = serverinfo.cpu
+    ,
+            disk = serverinfo.disk
+    ,
+            ip = result_ip
+    ,
+            memory = serverinfo.memory
+    ,
+            bandwidth = serverinfo.bandwidth
+    ,
+            switchname = serverinfo.switchname
+    ,
+            os = serverinfo.os
+    ,
+            servername = serverinfo.servername
+    ,
+            username = CurrentUser.Identity.Name
+    ,
+            expire = DateTime.Now.AddMonths(months)
+    ,
+            state = "Running"
+        });
+        db.SaveChanges();
+
+        db.transactions.Add(new Model.Transaction()
+        {
+            username = CurrentUser.Identity.Name,
+            type = "购买",
+            amount = cost,
+            time = DateTime.Now,
+            note = "服务器名称：" + serverinfo.servername
+        });
+        db.SaveChanges();
+
+        PowerShell ps3 = PowerShell.Create();
+        ps3.AddScript($"(get-vm '{serverinfo.servername}'| select -ExpandProperty networkadapters).ipAddresses");
+        int count = 180;
+        while (count != 0)
+        {
+            var o = ps3.Invoke();
+            if (o.Count > 1)
+            {
+                result_ip = o[0].ToString();
+                var ss = db.servers.Where(s => s.servername == serverinfo.servername).FirstOrDefault();
+                ss.ip = result_ip;
+                db.SaveChanges();
+                break;
+            }
+            Console.WriteLine("尝试：" + count);
+            await Task.Delay(1000);
+            count--;
+        }
+        message = "创建成功";
+        await show();
+    }
+
+    //向控制台输出创建的服务器相关信息
+    async Task show()
+    {
+        Console.WriteLine($"servername:{serverinfo.servername}");
+        Console.WriteLine($"VHDpath:{desVHDpath}");
+        Console.WriteLine($"path:{path + @"\" + serverinfo.servername}");
+        Console.WriteLine($"memory:{serverinfo.memory}");
+        Console.WriteLine($"cpu:{serverinfo.cpu}");
+        Console.WriteLine($"os:{serverinfo.os}");
+        Console.WriteLine($"disk:{serverinfo.disk}");
+        Console.WriteLine($"bandwidth:{serverinfo.bandwidth}");
+        var CurrentUser = (await authenticationStateTask).User;
+        Console.WriteLine($"username:{CurrentUser.Identity.Name}");
+        Console.WriteLine($"expire:{DateTime.Now.AddMonths(months)}");
+    }
+}

@@ -1,0 +1,90 @@
+﻿@page "/transaction"
+@inject CloudComputing.Data.ApplicationDbContext db
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize]
+
+<h3>UserTransaction</h3>
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>操作</th>
+        <th>金额</th>
+        <th>发生时间</th>
+        <th>备注</th>
+    </tr>
+    @foreach (var transaction in transactions)
+    {
+        <tr>
+            <td>@transaction.id</td>
+            <td>@transaction.type</td>
+            <td>@transaction.amount</td>
+            <td>@transaction.time</td>
+            <td>@transaction.note</td>
+        </tr>
+    }
+</table>
+<div class="form-inline">
+    @if (pre == true)
+    {
+        <button class="btn btn-primary" @onclick="Pre">上一页</button>
+
+    }
+    @if (next == true)
+    {
+        <button class="btn btn-primary" @onclick="Next">下一页</button>
+    }
+</div>
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+    //交易记录列表
+    private List<Model.Transaction> transactions;
+    //上一页和下一页按钮默认为不显示
+    private bool pre = false, next = false;
+    //交易记录页码默认为1
+    private int pageindex = 1;
+    //交易记录一页最多显示20条
+    private int pagesize = 20;
+    //用于保存当前登录的用户名
+    private string username = "";
+
+    //初始化
+    protected override async Task OnInitializedAsync()
+    {
+        var CurrentUser = (await authenticationStateTask).User;
+        username = CurrentUser.Identity.Name;
+        if (db.transactions.Where(t => t.username == username).Count() > pagesize)
+        {
+            next = true;
+        }
+        transactions = db.transactions.Where(t => t.username == username).OrderByDescending(t => t.id).Take(20).ToList();
+    }
+
+    //下一页
+    private void Next()
+    {
+        pre = true;
+        pageindex++;
+        if (db.transactions.Count() > pagesize * (pageindex))
+        {
+            next = true;
+        }
+        else
+        {
+            next = false;
+        }
+        transactions = db.transactions.Where(t => t.username == username).OrderByDescending(t => t.id).Skip(pagesize * (pageindex - 1)).Take(20).ToList();
+    }
+
+    //上一页
+    private void Pre()
+    {
+        pageindex--;
+        if (pageindex == 1)
+        {
+            pre = false;
+        }
+        next = true;
+        transactions = db.transactions.Where(t => t.username == username).OrderByDescending(t => t.id).Skip(pagesize * (pageindex - 1)).Take(20).ToList();
+    }
+}

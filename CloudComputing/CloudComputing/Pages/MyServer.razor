@@ -1,0 +1,99 @@
+﻿@page "/myserver"
+@inject CloudComputing.Data.ApplicationDbContext db
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using System.Management.Automation
+@using System.Management.Automation.Runspaces
+@attribute [Authorize]
+
+<h3>我的服务器</h3>
+
+<table class="table">
+    <tr>
+        <th>服务器名称</th>
+        <th>操作系统</th>
+        <th>内存大小</th>
+        <th>CPU</th>
+        <th>IP地址</th>
+        <th>带宽</th>
+        <th>交换机</th>
+        <th>硬盘大小</th>
+        <th>到期时间</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var server in servers)
+    {
+        <tr>
+            <td>@server.servername</td>
+            <td>@server.os</td>
+            <td>@server.memory MB</td>
+            <td>@server.cpu 核</td>
+            <td>@server.ip</td>
+            <td>@server.bandwidth MB</td>
+            <td>@server.switchname</td>
+            <td>@server.disk GB</td>
+            <td>@server.expire.ToString("yyyy-MM-dd")</td>
+            <td>@server.state</td>
+            <td>
+                <button class="btn btn-info btn-sm" @onclick="()=>Start(server)">启动</button>
+                <button class="btn btn-danger btn-sm" @onclick="()=>Stop(server)">停止</button>
+                <button class="btn btn-secondary btn-sm" @onclick="()=>Refresh(server)">刷新</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+    //服务器列表
+    private List<Model.Server> servers;
+
+    //初始化
+    protected override async Task OnInitializedAsync()
+    {
+        var CurrentUser = (await authenticationStateTask).User;
+        servers = db.servers.Where(s => s.username == CurrentUser.Identity.Name).ToList();
+    }
+
+    //启动服务器
+    private void Start(Model.Server s)
+    {
+        PowerShell ps = PowerShell.Create();
+        ps.AddScript($"Start-VM '{s.servername}'");
+        ps.Invoke();
+        s.state = "Running";
+        db.SaveChanges();
+    }
+
+    //停止服务器
+    private void Stop(Model.Server s)
+    {
+        PowerShell ps = PowerShell.Create();
+        ps.AddScript($"Stop-VM '{s.servername}'");
+        ps.Invoke();
+        s.state = "Off";
+        db.SaveChanges();
+    }
+
+    //刷新服务器信息
+    private void Refresh(Model.Server s)
+    {
+        PowerShell ps = PowerShell.Create();
+        ps.AddScript($"(get-vm '{s.servername}').state");
+        var result = ps.Invoke();
+        s.state = result[0].ToString();
+        db.SaveChanges();
+
+        //如果之前没有获取IP地址，则重新获取
+        if (s.ip== "获取中...")
+        {
+            PowerShell ps2 = PowerShell.Create();
+            ps2.AddScript($"(get-vm '{s.servername}' | select -ExpandProperty networkadapters).ipAddresses");
+            var r = ps2.Invoke();
+            s.ip=r[0].ToString();
+            db.SaveChanges();
+        }
+    }
+}

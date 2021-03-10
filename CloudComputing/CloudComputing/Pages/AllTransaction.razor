@@ -1,0 +1,151 @@
+﻿@page "/alltransaction"
+@inject CloudComputing.Data.ApplicationDbContext db
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize]
+
+
+    <AuthorizeView Roles="Administrators">
+        <div class="form-inline">
+            <div class="form-group">
+                <label>用户名：</label>
+                <input type="text" class="form-control" @bind-value="username" />
+            </div>
+            <button class="btn btn-primary" @onclick="GetUserTransaction">查找</button>
+            <div class="ml-3 form-inline">
+                操作类型：<select @bind="type" class="form-control">
+                    <option>未选择</option>
+                    <option>充值</option>
+                    <option>购买</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" @onclick="FilterByType">过滤</button>
+        </div>
+
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>操作</th>
+                <th>金额</th>
+                <th>发生时间</th>
+                <th>备注</th>
+            </tr>
+            @foreach (var transaction in transactions)
+            {
+                <tr>
+                    <td>@transaction.id</td>
+                    <td>@transaction.username</td>
+                    <td>@transaction.type</td>
+                    <td>@transaction.amount</td>
+                    <td>@transaction.time</td>
+                    <td>@transaction.note</td>
+                </tr>
+            }
+        </table>
+        <div class="form-inline">
+            @if (pre == true)
+            {
+                <button class="btn btn-primary" @onclick="Pre">上一页</button>
+
+            }
+            @if(next == true)
+            {
+                <button class="btn btn-primary" @onclick="Next">下一页</button>
+            }
+        </div>
+    </AuthorizeView>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+    //交易记录列表
+    private List<Model.Transaction> transactions;
+
+    //上一页和下一页按钮默认为不显示
+    private bool pre = false, next = false;
+    //交易记录默认页码为1
+    private int pageindex = 1;
+    //一页最多显示20条交易记录
+    private int pagesize = 20;
+    //交易类型
+    private string type { get; set; }
+    //用户名
+    private string username = "";
+
+    //初始化
+    protected override async Task OnInitializedAsync()
+    {
+        if(db.transactions.Count()>pagesize)
+        {
+            next = true;
+        }
+        transactions = db.transactions.OrderByDescending(t => t.id).Take(20).ToList();
+    }
+
+    //获取用户交易记录
+    private void GetUserTransaction()
+    {
+        if (username == "")
+        {
+            transactions = db.transactions.OrderByDescending(t => t.id).Take(20).ToList();
+        }
+        else
+        {
+            transactions = db.transactions.Where(t => t.username == username).OrderByDescending(t => t.id).Take(20).ToList();
+        }
+    }
+
+    //通过交易类型过滤
+    private void FilterByType()
+    {
+        if (username == "")
+        {
+            transactions = db.transactions.OrderByDescending(t => t.id).Take(20).ToList();
+        }
+        else
+        {
+            transactions = db.transactions.Where(t => t.username == username).OrderByDescending(t => t.id).Take(20).ToList();
+        }
+
+        if (type == "未选择")
+        {
+            return;
+        }
+        if (type == "充值")
+        {
+            transactions = transactions.Where(t => t.type == "充值").ToList();
+        }
+        if (type == "购买")
+        {
+            transactions = transactions.Where(t => t.type == "购买").ToList();
+        }
+    }
+
+    //下一页
+    private void Next()
+    {
+        pre = true;
+        pageindex++;
+        if (db.transactions.Count() > pagesize*(pageindex))
+        {
+            next = true;
+        }
+        else
+        {
+            next = false;
+        }
+        transactions = db.transactions.OrderByDescending(t => t.id).Skip(pagesize*(pageindex-1)).Take(20).ToList();
+    }
+
+    //上一页
+    private void Pre()
+    {
+        pageindex--;
+        if (pageindex==1)
+        {
+            pre = false;
+        }
+        next = true;
+        transactions = db.transactions.OrderByDescending(t => t.id).Skip(pagesize * (pageindex - 1)).Take(20).ToList();
+    }
+}
