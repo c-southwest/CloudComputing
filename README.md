@@ -37,7 +37,7 @@ password: Aa123456789
  Client running environment: Browser
 
 ## Screenshot
-![Server Management](https://github.com/c-southwest/CloudComputing/raw/main/img%5Cserver_management.png)
+![Server Management](https://github.com/c-southwest/CloudComputing/blob/main/img/server_management.png)
 
 ### Tips
  Run this system as administrator.
