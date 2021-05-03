@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dada\\Desktop\\CloudComputing\\CloudComputing\\CloudComputing.csproj": {}
+    "C:\\Users\\West\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\CloudComputing.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dada\\Desktop\\CloudComputing\\CloudComputing\\CloudComputing.csproj": {
+    "C:\\Users\\West\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\CloudComputing.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dada\\Desktop\\CloudComputing\\CloudComputing\\CloudComputing.csproj",
+        "projectUniqueName": "C:\\Users\\West\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\CloudComputing.csproj",
         "projectName": "CloudComputing",
-        "projectPath": "C:\\Users\\dada\\Desktop\\CloudComputing\\CloudComputing\\CloudComputing.csproj",
-        "packagesPath": "C:\\Users\\dada\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dada\\Desktop\\CloudComputing\\CloudComputing\\obj\\",
+        "projectPath": "C:\\Users\\West\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\CloudComputing.csproj",
+        "packagesPath": "C:\\Users\\West\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\West\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\West\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
@@ -75,8 +77,8 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.12, 3.1.12]"
             }
           ],
           "frameworkReferences": {
@@ -87,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.3.21202.5\\RuntimeIdentifierGraph.json"
         }
       }
     }

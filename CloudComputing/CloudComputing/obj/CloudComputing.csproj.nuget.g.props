@@ -5,10 +5,13 @@
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
-    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\dada\.nuget\packages\</NuGetPackageFolders>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\West\.nuget\packages\</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
-    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.6.0</NuGetToolVersion>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">5.10.0</NuGetToolVersion>
   </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="C:\Users\West\.nuget\packages\" />
+  </ItemGroup>
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
@@ -17,6 +20,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\Microsoft.CSharp.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -27,6 +31,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\Microsoft.VisualBasic.Core.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -37,6 +42,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\Microsoft.VisualBasic.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -47,6 +53,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\Microsoft.Win32.Primitives.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -57,6 +64,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.AppContext.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -67,6 +75,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Buffers.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -77,6 +86,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Collections.Concurrent.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -87,6 +97,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Collections.Immutable.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -97,6 +108,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Collections.NonGeneric.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -107,6 +119,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Collections.Specialized.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -117,6 +130,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Collections.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -127,6 +141,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.ComponentModel.Annotations.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -137,6 +152,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.ComponentModel.DataAnnotations.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -147,6 +163,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.ComponentModel.EventBasedAsync.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -157,6 +174,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.ComponentModel.Primitives.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -167,6 +185,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.ComponentModel.TypeConverter.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -177,6 +196,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.ComponentModel.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -187,6 +207,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Configuration.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -197,6 +218,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Console.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -207,6 +229,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Core.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -217,6 +240,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Data.Common.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -227,6 +251,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Data.DataSetExtensions.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -237,6 +262,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Data.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -247,6 +273,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Diagnostics.Contracts.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -257,6 +284,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Diagnostics.Debug.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -267,6 +295,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Diagnostics.DiagnosticSource.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -277,6 +306,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Diagnostics.FileVersionInfo.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -287,6 +317,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Diagnostics.Process.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -297,6 +328,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Diagnostics.StackTrace.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -307,6 +339,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Diagnostics.TextWriterTraceListener.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -317,6 +350,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Diagnostics.Tools.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -327,6 +361,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Diagnostics.TraceSource.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -337,6 +372,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Diagnostics.Tracing.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -347,6 +383,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Drawing.Primitives.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -357,6 +394,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Drawing.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -367,6 +405,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Dynamic.Runtime.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -377,6 +416,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Globalization.Calendars.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -387,6 +427,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Globalization.Extensions.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -397,6 +438,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Globalization.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -407,6 +449,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.Compression.Brotli.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -417,6 +460,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.Compression.FileSystem.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -427,6 +471,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.Compression.ZipFile.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -437,6 +482,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.Compression.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -447,6 +493,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.FileSystem.DriveInfo.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -457,6 +504,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.FileSystem.Primitives.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -467,6 +515,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.FileSystem.Watcher.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -477,6 +526,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.FileSystem.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -487,6 +537,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.IsolatedStorage.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -497,6 +548,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.MemoryMappedFiles.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -507,6 +559,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.Pipes.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -517,6 +570,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.UnmanagedMemoryStream.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -527,6 +581,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.IO.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -537,6 +592,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Linq.Expressions.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -547,6 +603,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Linq.Parallel.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -557,6 +614,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Linq.Queryable.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -567,6 +625,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Linq.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -577,6 +636,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Memory.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -587,6 +647,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.Http.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -597,6 +658,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.HttpListener.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -607,6 +669,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.Mail.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -617,6 +680,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.NameResolution.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -627,6 +691,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.NetworkInformation.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -637,6 +702,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.Ping.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -647,6 +713,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.Primitives.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -657,6 +724,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.Requests.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -667,6 +735,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.Security.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -677,6 +746,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.ServicePoint.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -687,6 +757,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.Sockets.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -697,6 +768,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.WebClient.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -707,6 +779,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.WebHeaderCollection.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -717,6 +790,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.WebProxy.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -727,6 +801,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.WebSockets.Client.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -737,6 +812,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.WebSockets.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -747,6 +823,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Net.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -757,6 +834,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Numerics.Vectors.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -767,6 +845,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Numerics.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -777,6 +856,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.ObjectModel.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -787,6 +867,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Reflection.DispatchProxy.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -797,6 +878,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Reflection.Emit.ILGeneration.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -807,6 +889,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Reflection.Emit.Lightweight.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -817,6 +900,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Reflection.Emit.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -827,6 +911,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Reflection.Extensions.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -837,6 +922,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Reflection.Metadata.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -847,6 +933,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Reflection.Primitives.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -857,6 +944,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Reflection.TypeExtensions.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -867,6 +955,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Reflection.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -877,6 +966,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Resources.Reader.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -887,6 +977,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Resources.ResourceManager.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -897,6 +988,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Resources.Writer.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -907,6 +999,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.CompilerServices.VisualC.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -917,6 +1010,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.Extensions.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -927,6 +1021,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.Handles.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -937,6 +1032,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.InteropServices.RuntimeInformation.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -947,6 +1043,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.InteropServices.WindowsRuntime.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -957,6 +1054,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.InteropServices.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -967,6 +1065,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.Intrinsics.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -977,6 +1076,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.Loader.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -987,6 +1087,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.Numerics.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -997,6 +1098,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.Serialization.Formatters.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1007,6 +1109,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.Serialization.Json.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1017,6 +1120,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.Serialization.Primitives.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1027,6 +1131,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.Serialization.Xml.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1037,6 +1142,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.Serialization.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1047,6 +1153,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Runtime.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1057,6 +1164,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Security.Claims.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1067,6 +1175,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Security.Cryptography.Algorithms.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1077,6 +1186,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Security.Cryptography.Csp.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1087,6 +1197,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Security.Cryptography.Encoding.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1097,6 +1208,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Security.Cryptography.Primitives.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1107,6 +1219,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Security.Cryptography.X509Certificates.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1117,6 +1230,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Security.Principal.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1127,6 +1241,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Security.SecureString.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1137,6 +1252,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Security.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1147,6 +1263,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.ServiceModel.Web.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1157,6 +1274,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.ServiceProcess.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1167,6 +1285,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Text.Encoding.Extensions.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1177,6 +1296,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Text.Encoding.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1187,6 +1307,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Text.Json.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1197,6 +1318,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Text.RegularExpressions.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1207,6 +1329,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Threading.Channels.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1217,6 +1340,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Threading.Overlapped.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1227,6 +1351,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Threading.Tasks.Dataflow.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1237,6 +1362,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Threading.Tasks.Extensions.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1247,6 +1373,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Threading.Tasks.Parallel.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1257,6 +1384,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Threading.Tasks.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1267,6 +1395,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Threading.Thread.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1277,6 +1406,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Threading.ThreadPool.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1287,6 +1417,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Threading.Timer.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1297,6 +1428,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Threading.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1307,6 +1439,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Transactions.Local.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1317,6 +1450,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Transactions.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1327,6 +1461,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.ValueTuple.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1337,6 +1472,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Web.HttpUtility.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1347,6 +1483,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Web.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1357,6 +1494,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Windows.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1367,6 +1505,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Xml.Linq.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1377,6 +1516,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Xml.ReaderWriter.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1387,6 +1527,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Xml.Serialization.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1397,6 +1538,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Xml.XDocument.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1407,6 +1549,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Xml.XPath.XDocument.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1417,6 +1560,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Xml.XPath.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1427,6 +1571,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Xml.XmlDocument.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1437,6 +1582,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Xml.XmlSerializer.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1447,6 +1593,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.Xml.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1457,6 +1604,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\System.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1467,6 +1615,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\WindowsBase.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1477,6 +1626,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\mscorlib.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1487,6 +1637,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>ref\netstandard.dll</TargetPath>
       <DestinationSubDirectory>ref\</DestinationSubDirectory>
@@ -1497,6 +1648,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\unix\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Host\Microsoft.PowerShell.Host.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\unix\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Host\</DestinationSubDirectory>
@@ -1507,6 +1659,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\unix\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Management\Microsoft.PowerShell.Management.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\unix\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Management\</DestinationSubDirectory>
@@ -1517,6 +1670,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\unix\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Security\Microsoft.PowerShell.Security.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\unix\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Security\</DestinationSubDirectory>
@@ -1527,6 +1681,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\unix\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Utility\Microsoft.PowerShell.Utility.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\unix\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Utility\</DestinationSubDirectory>
@@ -1537,6 +1692,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\CimCmdlets\CimCmdlets.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\CimCmdlets\</DestinationSubDirectory>
@@ -1547,6 +1703,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Diagnostics\Diagnostics.format.ps1xml</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Diagnostics\</DestinationSubDirectory>
@@ -1557,6 +1714,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Diagnostics\Event.format.ps1xml</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Diagnostics\</DestinationSubDirectory>
@@ -1567,6 +1725,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Diagnostics\GetEvent.types.ps1xml</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Diagnostics\</DestinationSubDirectory>
@@ -1577,6 +1736,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Diagnostics\Microsoft.PowerShell.Diagnostics.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Diagnostics\</DestinationSubDirectory>
@@ -1587,6 +1747,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Host\Microsoft.PowerShell.Host.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Host\</DestinationSubDirectory>
@@ -1597,6 +1758,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Management\Microsoft.PowerShell.Management.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Management\</DestinationSubDirectory>
@@ -1607,6 +1769,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Security\Microsoft.PowerShell.Security.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Security\</DestinationSubDirectory>
@@ -1617,6 +1780,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Utility\Microsoft.PowerShell.Utility.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.PowerShell.Utility\</DestinationSubDirectory>
@@ -1627,6 +1791,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.WSMan.Management\Microsoft.WSMan.Management.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.WSMan.Management\</DestinationSubDirectory>
@@ -1637,6 +1802,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.WSMan.Management\WSMan.format.ps1xml</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\Microsoft.WSMan.Management\</DestinationSubDirectory>
@@ -1647,6 +1813,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\PSDiagnostics\PSDiagnostics.psd1</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\PSDiagnostics\</DestinationSubDirectory>
@@ -1657,6 +1824,7 @@
       <NuGetPackageId>Microsoft.PowerShell.SDK</NuGetPackageId>
       <NuGetPackageVersion>7.0.1</NuGetPackageVersion>
       <NuGetItemType>None</NuGetItemType>
+      <Pack>false</Pack>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>runtimes\win\lib\netcoreapp3.1\Modules\PSDiagnostics\PSDiagnostics.psm1</TargetPath>
       <DestinationSubDirectory>runtimes\win\lib\netcoreapp3.1\Modules\PSDiagnostics\</DestinationSubDirectory>
@@ -1669,7 +1837,7 @@
     <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.identity.ui\3.1.4\buildTransitive\Microsoft.AspNetCore.Identity.UI.props" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.identity.ui\3.1.4\buildTransitive\Microsoft.AspNetCore.Identity.UI.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\dada\.nuget\packages\microsoft.codeanalysis.analyzers\2.9.6</PkgMicrosoft_CodeAnalysis_Analyzers>
-    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\dada\.nuget\packages\microsoft.entityframeworkcore.tools\3.1.4</PkgMicrosoft_EntityFrameworkCore_Tools>
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">C:\Users\West\.nuget\packages\microsoft.codeanalysis.analyzers\2.9.6</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">C:\Users\West\.nuget\packages\microsoft.entityframeworkcore.tools\3.1.4</PkgMicrosoft_EntityFrameworkCore_Tools>
   </PropertyGroup>
 </Project>
