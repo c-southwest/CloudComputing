@@ -129,11 +129,11 @@
             // 创建 ADMINISTRATION_ROLE 角色
             await _roleManager.CreateAsync(new IdentityRole(ADMINISTRATION_ROLE));
         }
-        // 确保用户admin@1000.red是管理员
-        var user = await _userManager.FindByNameAsync("admin@1000.red");
+        // 确保用户west@qq.com是管理员
+        var user = await _userManager.FindByNameAsync("west@qq.com");
         if (user != null)
         {
-            // 角色admin@1000.red是否属于管理员?
+            // 角色west@qq.com是否属于管理员?
             var UserResult = await _userManager.IsInRoleAsync(user, ADMINISTRATION_ROLE);
             if (!UserResult)
             {
