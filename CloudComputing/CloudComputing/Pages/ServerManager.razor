@@ -90,7 +90,11 @@
             PowerShell ps2 = PowerShell.Create();
             ps2.AddScript($"(get-vm '{s.servername}' | select -ExpandProperty networkadapters).ipAddresses");
             var r = ps2.Invoke();
-            s.ip = r[0].ToString();
+            if(r.Count == 0){
+
+            }else{
+                s.ip = r[0].ToString();
+            }
             db.SaveChanges();
         }
     }
@@ -107,7 +111,7 @@
         ps2.Invoke();
 
         PowerShell ps3 = PowerShell.Create();
-        ps3.AddScript($@"Remove-Item 'C:\Users\dada\Desktop\Hyper-v\VM\{s.servername}' -Recurse -Force");
+        ps3.AddScript($@"Remove-Item 'C:\Users\West\Desktop\VMs\{s.servername}' -Recurse -Force");
         ps3.Invoke();
         db.servers.Remove(s);
         db.SaveChanges();

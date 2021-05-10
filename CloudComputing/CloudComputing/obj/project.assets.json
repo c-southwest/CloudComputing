@@ -10530,19 +10530,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dada\\.nuget\\packages\\": {}
+    "C:\\Users\\West\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dada\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\CloudComputing.csproj",
+      "projectUniqueName": "C:\\Users\\West\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\CloudComputing.csproj",
       "projectName": "CloudComputing",
-      "projectPath": "C:\\Users\\dada\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\CloudComputing.csproj",
-      "packagesPath": "C:\\Users\\dada\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dada\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\obj\\",
+      "projectPath": "C:\\Users\\West\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\CloudComputing.csproj",
+      "packagesPath": "C:\\Users\\West\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\West\\Source\\Repos\\c-southwest\\CloudComputing\\CloudComputing\\CloudComputing\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dada\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\West\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

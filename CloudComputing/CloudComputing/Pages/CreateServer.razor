@@ -132,7 +132,7 @@
     //新建虚拟机的目标路径
     string desVHDpath;
     //保存新建虚拟机的根目录
-    string path = @"C:\Users\dada\Desktop\Hyper-v\VM";
+    string path = @"C:\Users\West\Desktop\VMs";
 
     //创建服务器
     async Task create()
@@ -170,13 +170,16 @@
         PowerShell ps2 = PowerShell.Create();
         ps2.AddCommand("New-VM")
         .AddParameter("Name", serverinfo.servername)
+        .AddParameter("Generation", 2)
         .AddParameter("VHDPath", desVHDpath)
         .AddParameter("Path", path + @"\" + serverinfo.servername)
-        .AddParameter("SwitchName", serverinfo.switchname);
+        .AddParameter("SwitchName", serverinfo.switchname)
+        ;
         ps2.AddScript($"Set-VMMemory '{serverinfo.servername}' -DynamicMemoryEnabled $true -MaximumBytes {serverinfo.memory}GB");
         ps2.AddScript($"Resize-VHD -Path {desVHDpath} -SizeBytes {serverinfo.disk}GB");
         ps2.AddScript($"Set-VMProcessor '{serverinfo.servername}' -Count {serverinfo.cpu}");
         ps2.AddScript($"Set-VMNetworkAdapter -VMName '{serverinfo.servername}' -MaximumBandwidth {serverinfo.bandwidth}MB");
+        ps2.AddScript($"Set-VMFirmware -VMName '{serverinfo.servername}' -EnableSecureBoot off");
         ps2.AddScript($"start-vm '{serverinfo.servername}'");
         ps2.Invoke();
 
