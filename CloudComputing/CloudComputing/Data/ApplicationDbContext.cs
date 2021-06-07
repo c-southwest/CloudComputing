@@ -16,6 +16,7 @@ namespace CloudComputing.Data
 
         public DbSet<Balance> balances { get; set; }
         public DbSet<Server> servers { get; set; }
+        public DbSet<Application> apps { get; set; }
         public DbSet<Transaction> transactions { get; set; }
         public DbSet<Template> templates { get; set; }
         public DbSet<Switch> switches { get; set; }

@@ -1,0 +1,192 @@
+﻿@page "/deployapp"
+@inject NavigationManager nav
+@using System.Management.Automation
+@using System.Management.Automation.Runspaces
+@using System.Collections.ObjectModel
+@using Model
+@inject CloudComputing.Data.ApplicationDbContext db
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@attribute [Authorize]
+<h3>部署应用</h3>
+
+<EditForm Model="@appinfo" OnValidSubmit="create">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <div class="row"><label class="text-danger">@error</label></div>
+        <label>
+            应用名称：<input class="form-control" type="text" @bind-value="appinfo.appname" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            镜像地址：<input class="form-control" type="text" @bind-value="appinfo.image" />
+        </label>
+
+    </div>
+    <div class="form-group">
+        <label>
+            副本总数：<input class="form-control" type="number" @bind-value="appinfo.replicas" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            访问端口：<input class="form-control" type="number" @bind-value="appinfo.port" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            内部端口：<input class="form-control" type="number" @bind-value="appinfo.targetport" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            购买时长（月）：<input class="form-control" type="number" @bind-value="months" />
+        </label>
+    </div>
+    <button class="btn btn-primary" disabled="@isDisabled" @onclick="BeforeCreate" type="submit">Create</button>
+</EditForm>
+<h3 class="text-success">所需花费：@cost 元</h3>
+<lable class="text-danger">@message</lable>
+
+@code {
+    //通过lamda表达式计算配置所需花费
+    private double cost => (appinfo.replicas * 5) * months;     //容器 1个/5元
+
+    //创建按钮是否被禁用
+    private bool isDisabled = false;
+    //提示信息
+    private string message = "";
+    //默认开通月数为1
+    private int months = 1;
+    //报错信息
+    private string error;
+
+    //创建应用所需的信息集合
+    private CreateAppModel appinfo = new CreateAppModel()
+    {
+
+        appname = "",
+        image = "",
+        replicas = 1,
+        port = 80,
+        targetport = 80
+    };
+
+    //初始化
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
+    //创建应用之前更新界面UI
+    private void BeforeCreate()
+    {
+        isDisabled = true;
+        message = "正在部署应用，请等待...";
+    }
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+
+    //创建应用
+    async Task create()
+    {
+        var s = db.apps.Where(a => a.appname == appinfo.appname);
+        //能查找到意味着已经存在
+        if (s.Count() != 0)
+        {
+            error = "已经存在该应用名称，请修改后重试";
+            message = "";
+            isDisabled = false;
+            return;
+        }
+        error = "";
+
+        var CurrentUser = (await authenticationStateTask).User;
+        var b = db.balances.Find(CurrentUser.Identity.Name);
+        if (b.amount < cost) //余额不够
+        {
+            message = "您的余额不足，请先充值";
+            isDisabled = false;
+            return;
+        }
+        b.amount -= cost;
+        db.SaveChanges();
+        PowerShell ps1 = PowerShell.Create();
+        //创建并暴露应用
+        ps1.AddScript(@$"kubectl.exe create deployment {appinfo.appname} --image={appinfo.image} --replicas={appinfo.replicas}");
+        ps1.AddScript(@$"kubectl.exe expose deployment {appinfo.appname} --port={appinfo.port} --target-port={appinfo.targetport} --type=LoadBalancer");
+        ps1.Invoke();
+
+        string result_ip = "获取中...";
+
+        //添加到数据库记录
+        db.apps.Add(new Application()
+        {
+            ip = result_ip,
+            appname = appinfo.appname,
+            image = appinfo.image,
+            replicas = appinfo.replicas,
+            port = appinfo.port,
+            targetport = appinfo.targetport,
+            username = CurrentUser.Identity.Name,
+            expire = DateTime.Now.AddMonths(months),
+            readyReplicas = 0
+        });
+        db.SaveChanges();
+
+        db.transactions.Add(new Model.Transaction()
+        {
+            username = CurrentUser.Identity.Name,
+            type = "购买",
+            amount = cost,
+            time = DateTime.Now,
+            note = "应用名称：" + appinfo.appname
+        });
+        db.SaveChanges();
+
+        //尝试获取ip地址
+        PowerShell ps3 = PowerShell.Create();
+        ps3.AddScript("kubectl get service " + appinfo.appname + " -o jsonpath='{.status.loadBalancer.ingress[*].ip}'");
+        int count = 60;
+        while (count != 0)
+        {
+            var o = ps3.Invoke();
+            if (o.Count == 1)
+            {
+                result_ip = o[0].ToString();
+                var a = db.apps.Where(a => a.appname == appinfo.appname).FirstOrDefault();
+                a.ip = result_ip;
+                db.SaveChanges();
+                break;
+            }
+            Console.WriteLine("尝试：" + count);
+            await Task.Delay(1000);
+            count--;
+        }
+        if (count == 0)
+        {
+            message = "IP地址获取失败";
+        }
+        else
+        {
+            message = "创建成功";
+        }
+        await show();
+    }
+
+    //向控制台输出创建的服务器相关信息
+    async Task show()
+    {
+        Console.WriteLine($"appname:{appinfo.appname}");
+        Console.WriteLine($"image:{appinfo.image}");
+        Console.WriteLine($"replicas:{appinfo.replicas}");
+        Console.WriteLine($"port:{appinfo.port}");
+        Console.WriteLine($"targetport:{appinfo.targetport}");
+        var CurrentUser = (await authenticationStateTask).User;
+        Console.WriteLine($"username:{CurrentUser.Identity.Name}");
+        Console.WriteLine($"expire:{DateTime.Now.AddMonths(months)}");
+    }
+}

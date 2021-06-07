@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\CloudComputing"
+    "\\CloudComputing",
+    "\\CloudComputing\\CloudComputing",
+    "\\CloudComputing\\CloudComputing\\Pages"
   ],
   "SelectedNode": "\\CloudComputing\\CloudComputing.sln",
   "PreviewInSolutionExplorer": false

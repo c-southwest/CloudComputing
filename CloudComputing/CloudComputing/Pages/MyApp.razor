@@ -1,0 +1,106 @@
+﻿@page "/myapp"
+@inject CloudComputing.Data.ApplicationDbContext db
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@using System.Management.Automation
+@using System.Management.Automation.Runspaces
+@attribute [Authorize]
+
+<h3>我的应用</h3>
+
+<table class="table">
+    <tr>
+        <th>应用名称</th>
+        <th>镜像</th>
+        <th>IP地址</th>
+        <th>访问端口</th>
+        <th>内部端口</th>
+        <th>到期时间</th>
+        <th>就绪副本</th>
+        <th>总副本</th>
+        <th>操作</th>
+    </tr>
+    @foreach (var app in apps)
+    {
+        <tr>
+            <td>@app.appname</td>
+            <td>@app.image</td>
+            <td>@app.ip</td>
+            <td>@app.port</td>
+            <td>@app.targetport</td>
+
+            <td>@app.expire.ToString("yyyy-MM-dd")</td>
+            <td>@app.readyReplicas</td>
+            <td>@app.replicas</td>
+
+            <td>
+                <button class="btn btn-danger btn-sm" @onclick="()=>Delete(app)">删除</button>
+                <button class="btn btn-secondary btn-sm" @onclick="()=>Refresh(app)">刷新</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState>
+    authenticationStateTask
+    { get; set; }
+    //应用列表
+    private List<Model.Application> apps;
+
+    //初始化
+    protected override async Task OnInitializedAsync()
+    {
+        var CurrentUser = (await authenticationStateTask).User;
+        apps = db.apps.Where(a => a.username == CurrentUser.Identity.Name).ToList();
+    }
+
+    //删除应用
+    private void Delete(Model.Application a)
+    {
+        PowerShell ps = PowerShell.Create();
+        ps.AddScript($"kubectl delete deployment {a.appname}");
+        ps.AddScript($"kubectl delete svc {a.appname}");
+        ps.Invoke();
+        db.apps.Remove(a);
+        db.SaveChanges();
+        apps = db.apps.ToList();
+    }
+
+
+    //刷新应用状态
+    private void Refresh(Model.Application a)
+    {
+        PowerShell ps = PowerShell.Create();
+        ps.AddScript("kubectl get deploy " + a.appname + " -o jsonpath='{.status.readyReplicas}'");
+        var result = ps.Invoke();
+        if (result.Count == 0)
+        {
+
+        }
+        else
+        {
+            a.readyReplicas = Int32.Parse(result[0].ToString());
+            db.SaveChanges();
+        }
+
+
+        //如果之前没有获取IP地址，则重新获取
+        if (a.ip == "获取中...")
+        {
+            PowerShell ps2 = PowerShell.Create();
+            ps2.AddScript("kubectl get service " + a.appname + " -o jsonpath='{.status.loadBalancer.ingress[*].ip}'");
+            var r = ps2.Invoke();
+            if (r.Count == 0)
+            {
+
+            }
+            else
+            {
+                a.ip = r[0].ToString();
+            }
+            db.SaveChanges();
+        }
+    }
+}
